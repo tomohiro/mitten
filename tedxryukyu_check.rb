@@ -12,8 +12,8 @@ require 'lib/utils'
 
 =begin
 
-= kurosheeva_check.rb
-== 玄箱芝の入荷情報をチェックし変化がある場合 Tiarra 経由で発言する Bot
+= tedxryukyu_check.rb
+== TEDxRyukyu.com のサイトの更新状態をチェックし変化がある場合 Tiarra 経由で発言する Bot
 
 Authors::    Tomohiro, TAIRA <tomohiro.t@gmail.com>
 Version::    0.0.1
@@ -28,16 +28,16 @@ http://github.com/cho45/net-irc/blob/master/examples/echo_bot.rb
 
 (1) 通常の起動
 
-    * $ ./Kurosheeva_check.rb -h tiarra.example.com -c "#CHANNEL@NETWORK"
+    * $ ./tedxryukyu_check.rb -h tiarra.example.com -c "#CHANNEL@NETWORK"
 
 (2) デーモンとして起動
 
-    * $ ./kurosheeva_check.rb -h tiarra.example.com -c "#CHANNEL@NETWORK" -D
+    * $ ./tedxryukyu_check.rb -h tiarra.example.com -c "#CHANNEL@NETWORK" -D
 
 =end
 
 
-class KurosheevaCheck < Net::IRC::Client
+class TEDxRyukyuCheck < Net::IRC::Client
   def initialize
     setup_options
     super(@irc_host, @irc_port, {
@@ -81,15 +81,13 @@ class KurosheevaCheck < Net::IRC::Client
   end
 
   def check_arrival
-    uri = 'http://www.buffalo-direct.com/directshop/products/detail.php?product_id=8097'
+    uri = 'http://www.tedxryukyu.com/index.html'
 
-    (Nokogiri::HTML(open(uri).read)/'div.add2cart/form/div.attention').each do |m|
-      if m.text.empty? or m.text != '申し訳ございません、在庫がなくなりました。'
-        message = m.text || 'Updated?'
-        post(NOTICE, @channel, "#{message} (#{URI.short(uri)})")
-      end
+    title = (Nokogiri::HTML(open(uri).read)/'title').text
+    unless title == 'tedxryukyu.com'
+        post(NOTICE, @channel, "TEDxRyukyu のサイトに更新がありました！ (#{uri})")
     end
   end
 end 
 
-KurosheevaCheck.new.start
+TEDxRyukyuCheck.new.start
