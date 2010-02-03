@@ -45,6 +45,7 @@ class TEDxRyukyuCheck < Net::IRC::Client
       :user => @bot_name,
       :real => @bot_name
     })
+    @info_count = 0
   end
 
   def setup_options
@@ -83,9 +84,11 @@ class TEDxRyukyuCheck < Net::IRC::Client
   def check_arrival
     uri = 'http://www.tedxryukyu.com/index.html'
 
-    title = (Nokogiri::HTML(open(uri).read)/'title').text
-    unless title == 'tedxryukyu.com'
-        post(NOTICE, @channel, "TEDxRyukyu のサイトに更新がありました！ (#{uri})")
+    info_list = (Nokogiri::HTML(open(uri).read)/'dl.info/dd')
+    
+    if @info_count != info_list.count
+        post(NOTICE, @channel, "#{info_list.first.text}(#{uri})")
+        @info_count = info_list.count
     end
   end
 end 
