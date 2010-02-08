@@ -101,7 +101,8 @@ class OpenPNENewDiaryCheck < Net::IRC::Client
     diaries = Nokogiri::HTML(diary_page.body)/'div.item'
 
     diaries[1...diaries.size].each do |diary|
-      uri   = URI.short("#{@openpne_uri}/#{(diary/'td.photo/a').first.attributes['href']}")
+      #uri   = URI.short("#{@openpne_uri}/#{(diary/'td.photo/a').first.attributes['href']}")
+      uri   = "#{@openpne_uri}/#{(diary/'td.photo/a').first.attributes['href']}"
 
       redo if uri == nil or uri == ''
 
