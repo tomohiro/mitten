@@ -17,7 +17,7 @@ Usage
 
 1. start
 
-    ./mintd start
+        ./mintd start
 
 2. restart
 
