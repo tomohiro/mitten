@@ -5,7 +5,6 @@ class OpenPNENewDiaryCheck < Mint::Plugin
   def initialize(config, socket)
     super(config, socket)
 
-    post(NOTICE, @channel, 'mint test')
     @sleep    = config['sleep'] || 60
     @uri      = config['uri']
     @username = config['username']
@@ -51,10 +50,5 @@ class OpenPNENewDiaryCheck < Mint::Plugin
         post(NOTICE, @channel, message) if @diaries.size > 20
       end
     end
-  end
-
-  def post(command, *params)
-    m = Message.new(nil, command, params.map { |s| s.gsub(/\r|\n/, " ") })
-    @socket << m
   end
 end
