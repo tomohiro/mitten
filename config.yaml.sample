@@ -7,17 +7,10 @@ general:
   real: Mint bot via Tiarra
   pass:
   error: '#Mint@example'
-  plugin_dir: plugins
+  plugin_dir: sample # normal => plugins
   charset:
     default: utf-8
 
 plugins:
   Sample:
     channel: '#Mint@example'
-
-  OpenPNENewDiaryCheck:
-    sleep: 60 
-    uri: http://openpne.example.com
-    channel: '#Mint@example'
-    username: 'username'
-    password: 'password'
