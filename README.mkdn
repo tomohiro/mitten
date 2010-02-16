@@ -18,7 +18,12 @@ Require
 ### RubyGems
 
 1. net-irc
+
+        $ sudo gem install net-irc
+
 2. daemons
+
+        $ sudo gem install daemons
 
 
 Usage
