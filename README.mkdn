@@ -1,12 +1,21 @@
 Mint
 ================================================================================
 
+
 Description
 --------------------------------------------------------------------------------
-Tiarra(IRC Proxy) に接続した動作することに特価した Bot
+
+Mint is IRC Bot Pluggable Framework.
+
 
 Require
 --------------------------------------------------------------------------------
+
+### Tiarra
+
+[Tiarra - IRC Proxy software](http://www.clovery.jp/tiarra/)
+
+### RubyGems
 
 1. net-irc
 2. daemons
@@ -21,20 +30,20 @@ Usage
 
 2. restart
 
-    ./mintd start
+        ./mintd restart
 
 3. stop
 
-    ./mintd stop
+        ./mintd stop
 
 4. config file change
 
-    ./mintd start -- -c config.yaml
+        ./mintd start -- -c config.yaml
 
 5. run on the top(not daemonize)
 
-    ./mintd run
+        ./mintd run
 
 6. Usage
 
-    ./mintd (run|start) -- -h
+        ./mintd (run|start) -- -h
