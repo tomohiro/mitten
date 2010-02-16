@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+MINT_PATH = Pathname.pwd.to_s
+$LOAD_PATH << MINT_PATH
+
+require 'rubygems'
+require 'daemons'
+
+Daemons.run('mint.rb')

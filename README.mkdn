@@ -1,13 +1,36 @@
-Tiarra Bot
+Mint
 ================================================================================
 
 Description
 --------------------------------------------------------------------------------
 Tiarra(IRC Proxy) に接続した動作することに特価した Bot
 
-Bot List
+Require
 --------------------------------------------------------------------------------
 
-1. openpne_new_diary_check.rb
+1. net-irc
+2. daemons
 
-    OpenPNE に新しい日記が投稿されたら Tiarra 経由で発言する Bot
+
+Usage
+--------------------------------------------------------------------------------
+
+1. start
+
+    ./mintd start
+
+2. restart
+
+    ./mintd start
+
+3. stop
+
+    ./mintd stop
+
+4. config file change
+
+    ./mintd start -- -c config.yaml
+
+5. debug mode
+
+    ./mintd run

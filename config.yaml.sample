@@ -1,0 +1,19 @@
+---
+general:
+  host: chat.freenode.net
+  port: 6668
+  user: Mint
+  nick: Mint
+  real: Mint bot via Tiarra
+  error: #Mint
+  plugin_dir: plugins
+  charset:
+    default: utf-8
+
+plugins:
+  OpenPNENewDiaryCheck:
+    sleep: 60 
+    uri: http://openpne.example.com
+    channel: '*'
+    username: 'username'
+    password: 'password'
