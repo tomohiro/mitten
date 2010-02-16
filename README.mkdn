@@ -31,6 +31,10 @@ Usage
 
     ./mintd start -- -c config.yaml
 
-5. debug mode
+5. run on the top(not daemonize)
 
     ./mintd run
+
+6. Usage
+
+    ./mintd (run|start) -- -h

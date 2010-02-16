@@ -2,13 +2,13 @@
 
 $KCODE = 'u'
 
+require 'ostruct'
+require 'yaml'
 require 'optparse'
 require 'pathname'
 
 require 'rubygems'
 require 'net/irc'
-require 'ostruct'
-require 'yaml'
 
 require 'lib/utils'
 require 'lib/plugin'
@@ -101,11 +101,9 @@ module Mint
     end
   end
 
-  class << self
-    def run
-      Core.new.start
-    end
+  def Mint::start
+    Core.new.start
   end
 end
 
-Mint.run
+Mint.start
