@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+Dir.chdir(File.dirname(__FILE__))
+$LOAD_PATH << '.'
+
 $KCODE = 'u'
 
 require 'ostruct'
@@ -14,61 +17,68 @@ require 'lib/utils'
 require 'lib/plugin'
 
 module Mint
+  DEFAULT_CONFIG_FILE_NAME = 'config.yaml'
+
   class Core < Net::IRC::Client
     def initialize
-      @config  = setup_options
+      @config  = load_configs
       @general = @config.general
 
       super(@general['host'], @general['port'], {
         :nick => @general['nick'],
         :user => @general['user'],
-        :real => @general['real']
+        :real => @general['real'],
+        :pass => @general['pass']
       })
     end
 
-    def setup_options
-      config_file = 'config.yaml'
+    def load_configs
+      config_file = DEFAULT_CONFIG_FILE_NAME 
 
       ARGV.options do |o|
-        o.on('-c', "--config-file [CONFIG FILE=#{config_file}]", "設定ファイルのパス (規定は#{config_file})") { |v| config_file = v }
+        o.on('-c', "--config-file CONFIG_FILE", " (default: #{config_file})") { |v| config_file = v }
         o.parse!
       end
 
-      unless File.exist?(config_file)
-        config_file = MINT_PATH + '/' + config_file
-      end
       config = OpenStruct.new(File.open(config_file) { |f| YAML.load(f) })
     end
 
-    def start
-      @socket = TCPSocket.open(@general['host'], @general['port'])
-      @socket.gets
+    def connect
+      TCPSocket.open(@general['host'], @general['port'])
+    end
 
-      post(NICK, @opts.nick)
-      post(USER, @opts.user, '0', '*', @opts.real)
+    def boot 
+      begin
+        @socket = connect
+        @socket.gets
 
+        post(NICK, @opts.nick)
+        post(USER, @opts.user, '0', '*', @opts.real)
+
+        run_plugins
+      rescue IOError => e
+        @log.error 'IOError' + e.to_s
+      ensure
+        finish
+      end
+    end
+
+    def run_plugins
       @plugins = load_plugins(@general['plugin_dir'], @config.plugins)
       @plugins.each do |plugin|
         Thread.start(plugin) do |t|
-          plugin.start
+          plugin.run
           t.join
         end
       end
 
       loop do
         break if Thread.list.empty?
+        sleep 10
       end
-    rescue IOError => e
-      @log.error 'IOError' + e.to_s
-    ensure
-      finish
     end
 
     def load_plugins(plugin_dir, plugin_configs)
-      unless File.directory?(plugin_dir)
-        plugin_dir = MINT_PATH + '/' + plugin_dir
-      end
-
       class_tables = {}
 
       Pathname.glob("#{plugin_dir}/*.rb") do |file|
@@ -76,8 +86,9 @@ module Mint
         m = Module.new
         m.module_eval(file.read, file)
         m.constants.each do |name|
+
           const = m.const_get(name)
-          if const.is_a? Class
+          if const.is_a? Class 
             plugin[name] = {
               :class   => const,
               :file    => file,
@@ -100,10 +111,7 @@ module Mint
       plugins
     end
   end
-
-  def Mint::start
-    Core.new.start
-  end
 end
 
-Mint.start
+puts 'Mint boot...'
+Mint::Core.new.boot

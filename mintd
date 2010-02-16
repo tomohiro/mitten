@@ -1,16 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'pathname'
-
-MINT_PATH = Pathname.pwd.to_s
-$LOAD_PATH << MINT_PATH
-
 require 'rubygems'
 require 'daemons'
 
-options = {
-  :app_name  => 'mintd',
-  :backtrace => true
-}
-
-Daemons.run('mint.rb', options)
+Daemons.run('mint.rb', {:app_name => 'mint'})

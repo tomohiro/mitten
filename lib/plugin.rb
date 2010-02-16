@@ -9,8 +9,7 @@ module Mint
     end
 
     def post(command, *params)
-      m = Message.new(nil, command, params.map { |s| s.gsub(/\r|\n/, " ") })
-      @socket << m
+      @socket <<  Message.new(nil, command, params.map { |s| s.gsub(/\r|\n/, " ") })
     end
   end
 end

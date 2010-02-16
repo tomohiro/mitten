@@ -14,7 +14,7 @@ class OpenPNENewDiaryCheck < Mint::Plugin
     login
   end
 
-  def start
+  def run
     loop do
       check_diaries
       sleep @sleep

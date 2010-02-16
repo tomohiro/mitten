@@ -5,15 +5,19 @@ general:
   user: Mint
   nick: Mint
   real: Mint bot via Tiarra
-  error: #Mint
+  pass:
+  error: '#Mint@example'
   plugin_dir: plugins
   charset:
     default: utf-8
 
 plugins:
+  Sample:
+    channel: '#Mint@example'
+
   OpenPNENewDiaryCheck:
     sleep: 60 
     uri: http://openpne.example.com
-    channel: '*'
+    channel: '#Mint@example'
     username: 'username'
     password: 'password'
