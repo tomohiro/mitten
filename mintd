@@ -8,4 +8,9 @@ $LOAD_PATH << MINT_PATH
 require 'rubygems'
 require 'daemons'
 
-Daemons.run('mint.rb')
+options = {
+  :app_name  => 'mintd',
+  :backtrace => true
+}
+
+Daemons.run('mint.rb', options)
