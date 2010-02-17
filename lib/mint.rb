@@ -44,7 +44,7 @@ module Mint
       end
 
       @config = OpenStruct.new(File.open(config_file) { |f| YAML.load(f) })
-      @server = eval("@config.#{@mode}")
+      @server = @config.method(@mode).call
     end
 
     def connect
