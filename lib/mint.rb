@@ -48,6 +48,7 @@ module Mint
     end
 
     def connect
+      puts "TCPSocket open to #{@server['host']}:#{@server['port']}"
       TCPSocket.open(@server['host'], @server['port'])
     end
 
@@ -87,7 +88,7 @@ module Mint
         m = Module.new
         m.module_eval(file.read, file)
         m.constants.each do |name|
-
+          break unless plugin_configs.has_key? name
           const = m.const_get(name)
           if const.is_a? Class 
             plugin[name] = {
@@ -107,6 +108,7 @@ module Mint
       plugins = []
       class_tables.each do |name, plugin|
         plugins << plugin[:class].new(plugin[:configs], @socket)
+        puts "Plugin: #{name} is loaded"
       end
 
       plugins
