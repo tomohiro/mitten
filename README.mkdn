@@ -31,24 +31,24 @@ Usage
 
 1. start
 
-        ./mintd start
+        ./script/server start
 
 2. restart
 
-        ./mintd restart
+        ./script/server restart
 
 3. stop
 
-        ./mintd stop
+        ./script/server stop
 
 4. config file change
 
-        ./mintd start -- -c config.yaml
+        ./script/server start -- -c lib/environment.yaml
 
 5. run on the top(not daemonize)
 
-        ./mintd run
+        ./script/server run
 
 6. Usage
 
-        ./mintd (run|start) -- -h
+        ./script/server (run|start) -- -h
