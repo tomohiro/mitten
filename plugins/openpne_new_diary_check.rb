@@ -14,12 +14,12 @@ require 'nokogiri'
 
 =end
 class OpenPNENewDiaryCheck < Mint::Plugin
-  def initialize(config, socket)
-    super(config, socket)
+  def initialize(*args)
+    super
 
-    @uri      = config['uri']
-    @username = config['username']
-    @password = config['password']
+    @uri      = @config['uri']
+    @username = @config['username']
+    @password = @config['password']
     @diaries = {}
   end
 

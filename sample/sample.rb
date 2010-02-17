@@ -1,6 +1,6 @@
 class Sample < Mint::Plugin
-  def initialize(config, socket)
-    super(config, socket)
+  def initialize(*args)
+    super
   end
 
   def main

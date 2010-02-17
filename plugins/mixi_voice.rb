@@ -17,11 +17,11 @@ class MixiVoice < Mint::Plugin
   MIXI_LOGIN_URI   = 'http://mixi.jp'
   RECENT_VOICE_URI = MIXI_LOGIN_URI + '/recent_echo.pl'
 
-  def initialize(config, socket)
-    super(config, socket)
+  def initialize(*args)
+    super
 
-    @email    = config['email']
-    @password = config['password']
+    @email    = @config['email']
+    @password = @config['password']
 
     @agent = WWW::Mechanize.new
     if ENV['http_proxy']
