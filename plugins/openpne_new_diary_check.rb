@@ -1,6 +1,18 @@
 require 'mechanize'
 require 'nokogiri'
 
+=begin
+
+ ex. environment.yaml
+
+  OpenPNENewDiaryCheck:
+    sleep: 60
+    channel: '#Mint@freenode'
+    uri : 'http://openpne.example.com'
+    username: 'username'
+    password: 'password'
+
+=end
 class OpenPNENewDiaryCheck < Mint::Plugin
   def initialize(config, socket)
     super(config, socket)

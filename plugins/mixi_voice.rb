@@ -2,6 +2,17 @@ require 'uri'
 require 'mechanize'
 require 'nokogiri'
 
+=begin
+
+ ex. environment.yaml
+
+  MixiVoice:
+    sleep: 60
+    channel: '#Mint@freenode'
+    email: 'email'
+    password: 'password'
+
+=end
 class MixiVoice < Mint::Plugin
   MIXI_LOGIN_URI   = 'http://mixi.jp'
   RECENT_VOICE_URI = MIXI_LOGIN_URI + '/recent_echo.pl'
