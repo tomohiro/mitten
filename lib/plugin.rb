@@ -19,6 +19,10 @@ module Mint
       post(NOTICE, *params)
     end
 
+    def message(*params)
+      post(PRIVMSG, *params)
+    end
+
     def run
       before_hook
 
