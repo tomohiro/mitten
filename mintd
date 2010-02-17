@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'rubygems'
-require 'daemons'
-
-Daemons.run('lib/mint.rb', {:app_name => 'mintd'})
