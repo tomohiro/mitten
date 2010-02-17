@@ -2,10 +2,10 @@ require 'ostruct'
 require 'yaml'
 
 class TimeCall < Mint::Plugin
-  def initialize(config, socket)
-    super(config, socket)
+  def initialize(*args)
+    super
 
-    @config_file = config['config']
+    @config_file = @config['config']
   end
 
   def before_hook
@@ -13,7 +13,7 @@ class TimeCall < Mint::Plugin
   end
 
   def main
-    now = "#{Time.now.hour}#{Time.now.min}".to_i
+    now = Time.now.strftime('%H%M').to_i
     @channels.each do |channel|
       notice(channel, @call_list[now]) if @call_list[now]
     end
