@@ -44,13 +44,7 @@ module Mint
       end
 
       @config = OpenStruct.new(File.open(config_file) { |f| YAML.load(f) })
-
-      case @mode
-      when 'production'
-        @server = @config.production
-      when 'development'
-        @server = @config.development
-      end
+      @server = eval("@config.#{@mode}")
     end
 
     def connect
@@ -62,9 +56,10 @@ module Mint
         @socket = connect
         @socket.gets
 
+        post(PASS, @opts.pass) if @opts.pass
         post(NICK, @opts.nick)
         post(USER, @opts.user, '0', '*', @opts.real)
-        post(JOIN, @opts.channel)
+        post(JOIN, @opts.channel) if @opts.channel
 
         run_plugins
       rescue IOError => e
