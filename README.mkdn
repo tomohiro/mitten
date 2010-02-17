@@ -5,7 +5,7 @@ Mint
 Description
 --------------------------------------------------------------------------------
 
-Mint is IRC Bot Pluggable Framework.
+Mint is A Ruby IRC Bot Pluggable Framework.
 
 
 Require
@@ -31,24 +31,26 @@ Usage
 
 1. start
 
-        ./script/server start
+        ./script/daemon start
 
 2. restart
 
-        ./script/server restart
+        ./script/daemon restart
 
 3. stop
 
-        ./script/server stop
+        ./script/daemon stop
 
 4. config file change
 
-        ./script/server start -- -c lib/environment.yaml
+        ./script/daemon start -- -c lib/environment.yaml
 
 5. run on the top(not daemonize)
 
-        ./script/server run
+        ./script/server
+        ./script/daemon run
 
 6. Usage
 
-        ./script/server (run|start) -- -h
+        ./script/server -h
+        ./script/daemon run -- -h
