@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'daemons'
+
+Dir.chdir(File.expand_path('..', File.dirname(__FILE__)))
+
+Daemons.run('lib/mint.rb', {:app_name => 'mintd'})
