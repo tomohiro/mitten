@@ -22,30 +22,39 @@ module Mint
 
   class Core < Net::IRC::Client
     def initialize
-      @config  = load_configs
-      @general = @config.general
+      load_configs
 
-      super(@general['host'], @general['port'], {
-        :nick => @general['nick'],
-        :user => @general['user'],
-        :real => @general['real'],
-        :pass => @general['pass']
+      super(@server['host'], @server['port'], {
+        :nick    => @server['nick'],
+        :user    => @server['user'],
+        :real    => @server['real'],
+        :pass    => @server['pass'],
+        :channel => @server['channel']
       })
     end
 
     def load_configs
+      @mode = 'production'
       config_file = DEFAULT_CONFIG_FILE_PATH
 
       ARGV.options do |o|
         o.on('-c', "--config-file CONFIG_FILE", " (default: #{config_file})") { |v| config_file = v }
+        o.on('-d', "--development") { |v| @mode = 'development' }
         o.parse!
       end
 
-      config = OpenStruct.new(File.open(config_file) { |f| YAML.load(f) })
+      @config = OpenStruct.new(File.open(config_file) { |f| YAML.load(f) })
+
+      case @mode
+      when 'production'
+        @server = @config.production
+      when 'development'
+        @server = @config.development
+      end
     end
 
     def connect
-      TCPSocket.open(@general['host'], @general['port'])
+      TCPSocket.open(@server['host'], @server['port'])
     end
 
     def boot 
@@ -55,6 +64,7 @@ module Mint
 
         post(NICK, @opts.nick)
         post(USER, @opts.user, '0', '*', @opts.real)
+        post(JOIN, @opts.channel)
 
         run_plugins
       rescue IOError => e
@@ -66,7 +76,7 @@ module Mint
 
     def run_plugins
       threads = []
-      @plugins = load_plugins(@general['plugin_dir'], @config.plugins)
+      @plugins = load_plugins(@server['plugin_dir'], @config.plugins)
       @plugins.each do |plugin|
         threads.push(Thread.fork(plugin) { |p| p.run })
       end

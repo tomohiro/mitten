@@ -1,12 +1,24 @@
 ---
-general:
-  host: chat.freenode.net
-  port: 6668
+production:
+  host: tiarra.example.com
+  port: 6667
   user: Mint
   nick: Mint
   real: Mint bot via Tiarra
   pass:
-  error: '#Mint@example'
+  channel: '#Mint@example'
+  plugin_dir: sample # normal => plugins
+  charset:
+    default: utf-8
+ 
+development:
+  host: chat.freenode.net
+  port: 6667
+  user: Mint
+  nick: Mint
+  real: Mint is IRC Bot Framework
+  pass:
+  channel: '#Mint'
   plugin_dir: sample # normal => plugins
   charset:
     default: utf-8
