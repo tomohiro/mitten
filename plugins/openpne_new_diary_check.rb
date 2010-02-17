@@ -57,7 +57,9 @@ class OpenPNENewDiaryCheck < Mint::Plugin
 
       unless @diaries.has_key? uri
         @diaries[uri] = message
-        post(NOTICE, @channel, message) if @diaries.size > 20
+        @channels.each do |channel|
+          post(NOTICE, channel, message) if @diaries.size > 20
+        end
       end
     end
   end

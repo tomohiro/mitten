@@ -6,9 +6,9 @@ module Mint
 
   class Plugin < Net::IRC::Client
     def initialize(config, socket)
-      @socket  = socket
-      @channel = config['channel']
-      @sleep   = config['sleep'] || DEFUALT_SLEEP
+      @socket   = socket
+      @channels = config['channels'] || config['channel'].split(',')
+      @sleep    = config['sleep'] || DEFAULT_SLEEP
     end
 
     def post(command, *params)

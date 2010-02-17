@@ -53,8 +53,10 @@ class MixiVoice < Mint::Plugin
     voices = crawl_recent_voice
     voices.sort.each do |key, voice|
       if @caches.empty? or !@caches.has_key? key
-        post(PRIVMSG, @channel, "[#{voice[:nickname]}]#{voice[:reply]} #{voice[:comment]}")
-        sleep 5
+        @channels.each do |channel|
+          post(PRIVMSG, channel, "[#{voice[:nickname]}]#{voice[:reply]} #{voice[:comment]}")
+          sleep 5
+        end
       end
     end
     @caches = voices
