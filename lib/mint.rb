@@ -65,18 +65,13 @@ module Mint
     end
 
     def run_plugins
+      threads = []
       @plugins = load_plugins(@general['plugin_dir'], @config.plugins)
       @plugins.each do |plugin|
-        Thread.start(plugin) do |t|
-          plugin.run
-          t.join
-        end
+        threads.push(Thread.fork(plugin) { |p| p.run })
       end
 
-      loop do
-        break if Thread.list.empty?
-        sleep 10
-      end
+      threads.each { |t| t.join }
     end
 
     def load_plugins(plugin_dir, plugin_configs)
