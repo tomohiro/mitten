@@ -7,7 +7,7 @@ production:
   real: Mint bot via Tiarra
   pass:
   channel: '#Mint@example'
-  plugin_dir: sample # normal => plugins
+  plugin_dir: example # normal => plugins
   charset:
     default: utf-8
  
@@ -19,7 +19,7 @@ development:
   real: Mint is IRC Bot Framework
   pass:
   channel: '#Mint'
-  plugin_dir: sample # normal => plugins
+  plugin_dir: example # normal => plugins
   charset:
     default: utf-8
  
