@@ -20,7 +20,6 @@ class TimeCall < Mint::Plugin
   end
 
   def load_config
-    @config = OpenStruct.new(File.open(@config_file) { |f| YAML.load(f) })
-    @config.time
+    OpenStruct.new(File.open(@config_file) { |f| YAML.load(f) }).time
   end
 end
