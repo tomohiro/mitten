@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
-Dir.chdir(File.dirname(__FILE__))
-$LOAD_PATH << '.'
+MINT_ROOT = File.expand_path('..', File.dirname(__FILE__))
+Dir.chdir(MINT_ROOT)
+$LOAD_PATH << MINT_ROOT
 
 $KCODE = 'u'
 
@@ -17,7 +18,7 @@ require 'lib/utils'
 require 'lib/plugin'
 
 module Mint
-  DEFAULT_CONFIG_FILE_NAME = 'config.yaml'
+  DEFAULT_CONFIG_FILE_PATH = 'configs/environment.yaml'
 
   class Core < Net::IRC::Client
     def initialize
@@ -33,7 +34,7 @@ module Mint
     end
 
     def load_configs
-      config_file = DEFAULT_CONFIG_FILE_NAME 
+      config_file = DEFAULT_CONFIG_FILE_PATH
 
       ARGV.options do |o|
         o.on('-c', "--config-file CONFIG_FILE", " (default: #{config_file})") { |v| config_file = v }
@@ -113,5 +114,4 @@ module Mint
   end
 end
 
-puts 'Mint boot...'
 Mint::Core.new.boot

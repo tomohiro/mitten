@@ -10,7 +10,7 @@ general:
   plugin_dir: sample # normal => plugins
   charset:
     default: utf-8
-
+ 
 plugins:
   Sample:
     channel: '#Mint@example'

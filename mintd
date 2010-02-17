@@ -3,4 +3,4 @@
 require 'rubygems'
 require 'daemons'
 
-Daemons.run('mint.rb', {:app_name => 'mint'})
+Daemons.run('lib/mint.rb', {:app_name => 'mintd'})
