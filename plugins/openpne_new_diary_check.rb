@@ -5,22 +5,20 @@ class OpenPNENewDiaryCheck < Mint::Plugin
   def initialize(config, socket)
     super(config, socket)
 
-    @sleep    = config['sleep'] || 60
     @uri      = config['uri']
     @username = config['username']
     @password = config['password']
     @diaries = {}
+  end
 
+  def before_hook
     login
   end
 
-  def run
-    loop do
-      check_diaries
-      sleep @sleep
-    end
+  def main
+    check_diaries
   end
-
+  
   def login
     @agent = WWW::Mechanize.new
     @agent.get(@uri) do |login_page|

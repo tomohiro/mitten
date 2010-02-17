@@ -3,10 +3,7 @@ class Sample < Mint::Plugin
     super(config, socket)
   end
 
-  def run
-    loop do
-      post(NOTICE, @channel, 'sample')
-      sleep 10
-    end
+  def main
+    post(NOTICE, @channel, Time.now.to_s)
   end
 end
