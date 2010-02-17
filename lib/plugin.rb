@@ -15,6 +15,10 @@ module Mint
       @socket <<  Message.new(nil, command, params.map { |s| s.gsub(/\r|\n/, " ") })
     end
 
+    def notice(*params)
+      post(NOTICE, *params)
+    end
+
     def run
       before_hook
 

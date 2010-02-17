@@ -4,6 +4,6 @@ class Sample < Mint::Plugin
   end
 
   def main
-    @channels.each { |channel| post(NOTICE, channel, Time.now.to_s) }
+    @channels.each { |channel| notice(channel, Time.now.to_s) }
   end
 end
