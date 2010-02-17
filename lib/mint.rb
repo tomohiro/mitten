@@ -1,9 +1,5 @@
 #!/usr/bin/env ruby
 
-MINT_ROOT = File.expand_path('..', File.dirname(__FILE__))
-Dir.chdir(MINT_ROOT)
-$LOAD_PATH << MINT_ROOT
-
 $KCODE = 'u'
 
 require 'ostruct'
@@ -21,6 +17,10 @@ module Mint
   DEFAULT_CONFIG_FILE_PATH = 'configs/environment.yaml'
 
   class Core < Net::IRC::Client
+    def self.boot
+      new.boot
+    end
+
     def initialize
       load_configs
 
@@ -115,5 +115,3 @@ module Mint
     end
   end
 end
-
-Mint::Core.new.boot

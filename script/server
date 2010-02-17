@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'daemons'
+MINT_ROOT = File.expand_path('..', File.dirname(__FILE__))
+Dir.chdir(MINT_ROOT)
+$: <<  MINT_ROOT
 
-Dir.chdir(File.expand_path('..', File.dirname(__FILE__)))
+require 'lib/mint.rb'
 
-Daemons.run('lib/mint.rb', {:app_name => 'mintd'})
+puts 'Loading Mint...'
+Mint::Core.boot
