@@ -42,4 +42,5 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "mint #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
+  rdoc.options = ['-c', 'utf-8', '-N']
 end
