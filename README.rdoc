@@ -15,63 +15,63 @@ Mint is A Ruby IRC Bot Pluggable Framework.
 
 1. rake
 
-        $ sudo gem install rake
+    $ sudo gem install rake
 
 2. rspec
 
-        $ sudo gem install rspec
+    $ sudo gem install rspec
 
 3. net-irc
 
-        $ sudo gem install net-irc
+    $ sudo gem install net-irc
 
 4. daemons
 
-        $ sudo gem install daemons
+    $ sudo gem install daemons
 
 
 == Usage
 
 1. start
 
-        ./script/daemon start
+    ./script/daemon start
 
 2. restart
 
-        ./script/daemon restart
+    ./script/daemon restart
 
 3. stop
 
-        ./script/daemon stop
+    ./script/daemon stop
 
 4. config file change
 
-        ./script/daemon start -- -c lib/environment.yaml
+    ./script/daemon start -- -c lib/environment.yaml
 
 5. run on the top(not daemonize)
 
-        ./script/server
-        ./script/daemon run
+    ./script/server
+    ./script/daemon run
 
 6. Usage
 
-        ./script/server -h
-        ./script/daemon run -- -h
+    ./script/server -h
+    ./script/daemon run -- -h
 
 
 == Rake tasks
 
 1. Display Rake tasks
 
-        $ rake -T
+    $ rake -T
 
 2. Unit Test
 
-        $ rake rspec
+    $ rake spec
 
 3. Generates Rdoc Documentation
 
-        $ rake rdoc
+    $ rake rdoc
 
 
 == Note on Patches/Pull Requests
