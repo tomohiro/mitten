@@ -7,10 +7,6 @@ Mint is A Ruby IRC Bot Pluggable Framework.
 
 == Require
 
-=== Tiarra
-
-[Tiarra - IRC Proxy software](http://www.clovery.jp/tiarra/)
-
 === RubyGems
 
 1. rake
@@ -32,31 +28,31 @@ Mint is A Ruby IRC Bot Pluggable Framework.
 
 == Usage
 
-1. start
-
-    ./script/daemon start
-
-2. restart
-
-    ./script/daemon restart
-
-3. stop
-
-    ./script/daemon stop
-
-4. config file change
-
-    ./script/daemon start -- -c lib/environment.yaml
-
-5. run on the top(not daemonize)
-
-    ./script/server
-    ./script/daemon run
-
-6. Usage
+1. Usage
 
     ./script/server -h
     ./script/daemon run -- -h
+
+2. Start
+
+    ./script/daemon start
+
+3. Restart
+
+    ./script/daemon restart
+
+4. Stop
+
+    ./script/daemon stop
+
+5. Changed config file
+
+    ./script/daemon start -- -c lib/environment.yaml
+
+6. Run on the top(not daemonize)
+
+    ./script/server
+    ./script/daemon run
 
 
 == Rake tasks
