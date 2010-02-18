@@ -59,6 +59,21 @@ Mint is A Ruby IRC Bot Pluggable Framework.
         ./script/daemon run -- -h
 
 
+== Rake tasks
+
+1. Display Rake tasks
+
+        $ rake -T
+
+2. Unit Test
+
+        $ rake rspec
+
+3. Generates Rdoc Documentation
+
+        $ rake rdoc
+
+
 == Note on Patches/Pull Requests
  
 - Fork the project.
