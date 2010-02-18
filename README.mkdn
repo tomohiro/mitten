@@ -17,11 +17,19 @@ Require
 
 ### RubyGems
 
-1. net-irc
+1. rake
+
+        $ sudo gem install rake
+
+2. rspec
+
+        $ sudo gem install rspec
+
+3. net-irc
 
         $ sudo gem install net-irc
 
-2. daemons
+4. daemons
 
         $ sudo gem install daemons
 
@@ -71,4 +79,11 @@ Note on Patches/Pull Requests
 Copyright
 --------------------------------------------------------------------------------
 
-Copyright (c) 2010 Tomohiro, TAIRA. See LICENSE for details.
+Copyright (c) 2010 Tomohiro, TAIRA. 
+
+
+Licence
+--------------------------------------------------------------------------------
+
+The MIT License
+See LICENSE for details.
