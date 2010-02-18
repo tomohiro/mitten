@@ -5,7 +5,7 @@ describe "Mint" do
     @mint = Mint::Core.new
   end
 
-  it 'Mint::Core Instanctiation' do
+  it 'Mint::Core Instantiation' do
     @mint.class.should == Mint::Core
   end
 end
