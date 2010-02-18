@@ -1,4 +1,4 @@
-README.mkdn
+README.rdoc
 lib/**/*.rb
 bin/*
 features/**/*.feature
