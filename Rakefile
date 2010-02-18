@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = 'mint'
     gem.summary = 'IRC Bot Framework'
-    gem.description = 'Mint is A Ruby IRC Bot Framework'
+    gem.description = 'Mint is A Ruby IRC Bot Pluggable Framework'
     gem.email = 'tomohiro.t@gmail.com'
     gem.homepage = 'http://github.com/Tomohiro/mint'
     gem.authors = ['Tomohiro, TAIRA']
