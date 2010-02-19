@@ -37,7 +37,7 @@ class OpenPNENewDiaryCheck < Mint::Plugin
     end
   end
 
-  def notify
+  def main
     diary_page = @agent.get "#{@uri}/?m=pc&a=page_h_diary_list_all"
     diaries = Nokogiri::HTML(diary_page.body)/'div.item'
 

@@ -73,9 +73,23 @@ module Mint
     def run_plugins
       threads = []
       @plugins = load_plugins(@server['plugin_dir'], @config.plugins)
+
+      threads.push(
+        Thread.fork do
+          while line = @socket.gets
+            message = Message.parse(line)
+            if message.command.upcase == 'PRIVMSG'
+              @plugins.each do |plugin|
+                plugin.on_privmsg(message.prefix, message[0], message[1])
+              end
+            end
+          end
+        end
+      )
+
       @plugins.each do |plugin|
         plugin.before_hook
-        threads.push(Thread.fork(plugin) { |p| p.run })
+        threads.push(Thread.fork(plugin) { |p| p.notify })
       end
 
       threads.each { |t| t.join }

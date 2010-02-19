@@ -39,7 +39,7 @@ class Gmail < Mint::Plugin
     @request.basic_auth(@account, @password)
   end
 
-  def notify
+  def main
     mail_list = Nokogiri::XML(@https.request(@request).body)
     (mail_list/'entry').each do |entry|
       id = entry.at('id').content

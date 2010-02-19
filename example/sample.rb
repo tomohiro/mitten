@@ -3,11 +3,11 @@ class Sample < Mint::Plugin
     super
   end
 
-  def befavior(line)
-    @channels.each { |channel| notice(channel, line) }
+  def on_privmsg(prefix, channel, message)
+    notice(channel, message)
   end
 
-  def notify
+  def main
     @channels.each { |channel| notice(channel, Time.now.to_s) }
   end
 end

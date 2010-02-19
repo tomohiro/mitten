@@ -47,21 +47,24 @@ class MixiVoice < Mint::Plugin
     end
   end
 
-  def behavior(message)
-    if message.prefix =~ Regexp.new(@nickname)
-      case message[1]
+  def on_privmsg(prefix, channel, message)
+    if prefix =~ Regexp.new(@nickname)
+      case message
       when /^re ([0-9]+) (.+)/
-        reply(message.params.first, $1, $2)
+        reply(channel, $1, $2)
       when /^rm ([0-9]+)/
         delete($1)
       when /^add (.+)/
         add($1)
       end
-      notify
     end
   end
 
-  def notify
+  def main
+    get
+  end
+
+  def get
     voices = crawl_recent_voice
     voices.sort.each do |key, voice|
       if @caches.empty? or !@caches.has_key? key

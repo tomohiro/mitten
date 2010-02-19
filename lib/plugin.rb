@@ -6,9 +6,9 @@ module Mint
 
   class Plugin < Net::IRC::Client
     def initialize(config, socket)
-      @config   = config
+      @config   = config || {}
       @socket   = socket
-      @channels = @config['channels'] || @config['channel'].split(',')
+      @channels = @config['channels'] || @config['channel']
       @sleep    = @config['sleep'] || DEFAULT_SLEEP
     end
 
@@ -24,33 +24,14 @@ module Mint
       post(PRIVMSG, *params)
     end
 
-    def before_hook
+    def on_privmsg(prefix, channel, message)
     end
 
-    def run
-      threads = []
-
-      threads.push(
-        Thread.fork do
-          while line = @socket.gets
-            message = Message.parse(line)
-            if message.command.upcase == 'PRIVMSG'
-              behavior(message)
-            end
-          end
-        end
-      )
-
-      threads.push(
-        Thread.fork do
-          loop do
-            notify
-            sleep @sleep
-          end
-        end
-      )
-
-      threads.each { |t| t.join }
+    def notify
+      loop do
+        main
+        sleep @sleep
+      end
     end
   end
 end
