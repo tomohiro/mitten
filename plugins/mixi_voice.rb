@@ -23,7 +23,7 @@ class MixiVoice < Mint::Plugin
     @email    = @config['email']
     @password = @config['password']
 
-    @agent = WWW::Mechanize.new
+    @agent = Mechanize.new
     if ENV['http_proxy']
       proxy = URI.parse(ENV['http_proxy'])
       @agent.set_proxy(proxy.host, proxy.port)

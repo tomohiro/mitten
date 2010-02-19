@@ -32,7 +32,7 @@ class OpenPNENewDiaryCheck < Mint::Plugin
   end
   
   def login
-    @agent = WWW::Mechanize.new
+    @agent = Mechanize.new
     @agent.get(@uri) do |login_page|
       login_page.form_with(:name => 'login') do |f|
         f.username = @username
