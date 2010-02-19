@@ -64,7 +64,11 @@ module Mint
 
         run_plugins
       rescue IOError => e
-        @log.error 'IOError' + e.to_s
+        post(NOTICE, @opts.channel, e.to_s) if @opts.channel
+        @log.error 'IOError => ' + e.to_s
+      rescue Exception => e
+        post(NOTICE, @opts.channel, e.to_s) if @opts.channel
+        @log.error 'Exception => ' + e.to_s
       ensure
         finish
       end

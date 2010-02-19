@@ -18,12 +18,16 @@ class Ramen < Mint::Plugin
   end
 
   def shop_choice
-    list = Nokogiri::HTML(open(@rank_uri).read)/'.access_rank'
+    begin
+      list = Nokogiri::HTML(open(@rank_uri).read)/'.access_rank'
 
-    shop = list.to_a.choice
-    name = shop.at('a').text
-    detail = URI.short(@base_uri + shop.at('a').attributes['href'])
+      shop = list.to_a.choice
+      name = shop.at('a').text
+      detail = URI.short(@base_uri + shop.at('a').attributes['href'])
 
-    "#{name} に行けば？ (#{detail})"
+      "#{name} に行けば？ (#{detail})"
+    rescue Exception =>e 
+      ranking << 'こわれたっ／(^o^)＼'
+    end
   end
 end

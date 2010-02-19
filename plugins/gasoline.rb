@@ -24,17 +24,21 @@ class Gasoline < Mint::Plugin
   def gasoline_ranking
     ranking = []
 
-    lists = Nokogiri::HTML(open(@rank_uri).read, nil, 'EUC-JP')/'.tableType02'/'tr'
-    lists[2..6].each do |line|
-      next unless line.at('td[@colspan="5"]').nil?
+    begin
+      lists = Nokogiri::HTML(open(@rank_uri).read, nil, 'EUC-JP')/'.tableType02'/'tr'
+      lists[2..6].each do |line|
+        next unless line.at('td[@colspan="5"]').nil?
 
-      rank    = line.at('.crownBig001').text
-      price   = line.at('.priceLevelBig5').text
-      station = line.at('strong').text
-      address = line.at('small').text
-      detail  = URI.short(@base_uri + line.at('strong/a').attributes['href'])
+        rank    = line.at('.crownBig001').text
+        price   = line.at('.priceLevelBig5').text
+        station = line.at('strong').text
+        address = line.at('small').text
+        detail  = URI.short(@base_uri + line.at('strong/a').attributes['href'])
 
-      ranking << "#{rank}位 #{price}円 #{station} #{address} (#{detail})"
+        ranking << "#{rank}位 #{price}円 #{station} #{address} (#{detail})"
+      end
+    rescue Exception => e
+      ranking << 'こわれたっ／(^o^)＼'
     end
 
     ranking

@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{mint}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tomohiro, TAIRA"]
@@ -30,9 +30,27 @@ Gem::Specification.new do |s|
      "lib/plugin.rb",
      "lib/utils.rb",
      "mint.gemspec",
+     "plugins/amazon_search.rb",
+     "plugins/bmi.rb",
+     "plugins/codepad.rb",
+     "plugins/fortune.rb",
+     "plugins/gasoline.rb",
+     "plugins/gmail.rb",
+     "plugins/google_profile.rb",
+     "plugins/google_transit.rb",
+     "plugins/google_weather.rb",
      "plugins/mixi_voice.rb",
+     "plugins/nanapi.rb",
+     "plugins/newspaper_headlines.rb",
      "plugins/openpne_new_diary_check.rb",
+     "plugins/ramen.rb",
+     "plugins/rate.rb",
+     "plugins/screen_time_search.rb",
+     "plugins/sun_sign_astrology.rb",
      "plugins/time_call.rb",
+     "plugins/tweet.rb",
+     "plugins/typhoon.rb",
+     "plugins/uri_shorten.rb",
      "script/daemon",
      "script/server",
      "spec/mint_spec.rb",

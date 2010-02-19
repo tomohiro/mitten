@@ -12,8 +12,8 @@ class GoogleTransit < Mint::Plugin
   private
 
   def search_route(search_from, search_to)
-    from  = URI.escape(search_from.to_u8)
-    to    = URI.escape(search_to.to_u8)
+    from  = URI.escape(search_from.toutf8)
+    to    = URI.escape(search_to.toutf8)
     query = "http://maps.google.co.jp/maps?f=q&source=s_q&hl=ja&geocode=&q=from%3A+#{from}+to%3A+#{to}"
 
     begin
@@ -21,27 +21,27 @@ class GoogleTransit < Mint::Plugin
       route = html/'#transit_route_0'
 
       unless route.empty?
-        start_place = (html/'#ddw_addr_area_0/#sxaddr/div.sa').inner_text.to_u8
-        end_place   = (html/'#ddw_addr_area_1/#sxaddr/div.sa').inner_text.to_u8
-        time = (html/'#transit_route_0').search('span.ts_jtime').inner_text.to_u8
-        cost = (html/'#transit_route_0').search('span.ts_routecost').inner_text.to_u8
+        start_place = (html/'#ddw_addr_area_0/#sxaddr/div.sa').text.toutf8
+        end_place   = (html/'#ddw_addr_area_1/#sxaddr/div.sa').text.toutf8
+        time = (html/'#transit_route_0').search('span.ts_jtime').text.toutf8
+        cost = (html/'#transit_route_0').search('span.ts_routecost').text.toutf8
 
         messages = ["#{start_place} から #{end_place} へ行くにはね，"]
         messages << "だいたい #{time} で #{cost} ぐらいかかるみたい！"
 
         (route/'table.ts_step').each_with_index do |step, counter|
           counter += 1
-          longline = (step/'span.longline').inner_text.to_u8
-          action   = (step/'span.action').inner_text.to_u8
+          longline = (step/'span.longline').text.toutf8
+          action   = (step/'span.action').text.toutf8
 
           unless longline.empty?
             locations = step/'span.location'
 
             messages << "#{counter} : #{action} で「#{longline}」に乗る"
-            messages << "　　[発] #{locations[0].inner_text.to_u8}"
-            messages << "　　[着] #{locations[1].inner_text.to_u8}"
+            messages << "　　[発] #{locations[0].text.toutf8}"
+            messages << "　　[着] #{locations[1].text.toutf8}"
           else
-            location = (step/'span.location').inner_text.to_u8
+            location = (step/'span.location').text.toutf8
             messages << "#{counter} : #{location} #{action}"
           end
         end

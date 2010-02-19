@@ -5,7 +5,7 @@ class Tweet < Mint::Plugin
   def initialize(*args)
     super
 
-    @prefix = @config['prefix'] || '^@(.+)$'
+    @prefix = @config['prefix']
   end
 
   def on_privmsg(prefix, channel, message)

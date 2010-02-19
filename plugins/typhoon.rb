@@ -27,7 +27,7 @@ class Typhoon < Mint::Plugin
         typhoon_name = typhoon.inner_html.scan(/<b>(.+)<\/b>/)
         description  = typhoon.inner_text.scan(/ (.+?)。/)
 
-        typhoon_info << "#{typhoon_name} #{description}".to_u8
+        typhoon_info << "#{typhoon_name} #{description}".toutf8
       end
       typhoon_info << @uri
     rescue
