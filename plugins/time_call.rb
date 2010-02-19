@@ -12,14 +12,14 @@ class TimeCall < Mint::Plugin
     @call_list = load_config
   end
 
-  def main
+  def load_config
+    OpenStruct.new(File.open(@config_file) { |f| YAML.load(f) }).time
+  end
+
+  def notify
     now = Time.now.strftime('%H%M').to_i
     @channels.each do |channel|
       notice(channel, @call_list[now]) if @call_list[now]
     end
-  end
-
-  def load_config
-    OpenStruct.new(File.open(@config_file) { |f| YAML.load(f) }).time
   end
 end

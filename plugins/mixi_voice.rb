@@ -36,10 +36,6 @@ class MixiVoice < Mint::Plugin
     login
   end
 
-  def main
-    get_voice
-  end
-
   def login
     @agent.get MIXI_LOGIN_URI do |login_page|
       login_page.form 'login_form' do |form|
@@ -49,7 +45,7 @@ class MixiVoice < Mint::Plugin
     end
   end
 
-  def get_voice
+  def notify
     voices = crawl_recent_voice
     voices.sort.each do |key, voice|
       if @caches.empty? or !@caches.has_key? key

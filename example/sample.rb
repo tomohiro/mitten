@@ -3,7 +3,11 @@ class Sample < Mint::Plugin
     super
   end
 
-  def main
+  def befavior(line)
+    @channels.each { |channel| notice(channel, line) }
+  end
+
+  def notify
     @channels.each { |channel| notice(channel, Time.now.to_s) }
   end
 end

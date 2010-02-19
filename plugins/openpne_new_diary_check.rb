@@ -27,10 +27,6 @@ class OpenPNENewDiaryCheck < Mint::Plugin
     login
   end
 
-  def main
-    check_diaries
-  end
-  
   def login
     @agent = Mechanize.new
     @agent.get(@uri) do |login_page|
@@ -41,7 +37,7 @@ class OpenPNENewDiaryCheck < Mint::Plugin
     end
   end
 
-  def check_diaries 
+  def notify
     diary_page = @agent.get "#{@uri}/?m=pc&a=page_h_diary_list_all"
     diaries = Nokogiri::HTML(diary_page.body)/'div.item'
 
