@@ -2,6 +2,12 @@ require 'open-uri'
 require 'nokogiri'
  
 class Tweet < Mint::Plugin
+  def initialize(*args)
+    super
+
+    @prefix = @config['prefix'] || '^@(.+)$'
+  end
+
   def on_privmsg(prefix, channel, message)
     if /#{@config['prefix']}/ =~ message
       user = $1

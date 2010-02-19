@@ -1,5 +1,6 @@
 /configs/environment.yaml
 /lib/mint.rb.pid
+/amazonrc
 
 ## MAC OS
 .DS_Store
