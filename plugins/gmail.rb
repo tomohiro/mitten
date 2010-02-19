@@ -50,7 +50,7 @@ class Gmail < Mint::Plugin
         link  = entry.at('link')['href']
 
         @channels.each do |channel|
-          message(channel, "Gmail: (#{name}) #{title} #{URI.short(link)}")
+          notice(channel, "Gmail: (#{name}) #{title} #{URI.short(link)}")
           sleep 5
         end
       end
