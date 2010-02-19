@@ -50,7 +50,7 @@ class MixiVoice < Mint::Plugin
     voices.sort.each do |key, voice|
       if @caches.empty? or !@caches.has_key? key
         @channels.each do |channel|
-          message(channel, "[#{voice[:nickname]}]#{voice[:reply]} #{voice[:comment]}")
+          message(channel, "mixi voice: [#{voice[:nickname]}]#{voice[:reply]} #{voice[:comment]}")
           sleep 5
         end
       end
