@@ -43,16 +43,14 @@ class OpenPNENewDiaryCheck < Mint::Plugin
 
     diaries[1...diaries.size].each do |diary|
       uri = "#{@uri}/#{(diary/'td.photo/a').first.attributes['href']}"
-
       redo if uri == nil or uri == ''
 
-      nick  = ((diary/'td').to_a)[1].text.gsub(/ \(.*\)$/, '')
-      title = ((diary/'td').to_a)[2].text.gsub(/ \([0-9].?\)/, '')
-
-      message = "#{nick}さんが「#{title}」を投稿しました！ (#{uri})"
-
       unless @diaries.has_key? uri
-        @diaries[uri] = message
+        @diaries[uri] = true
+        nick  = ((diary/'td').to_a)[1].text.gsub(/ \(.*\)$/, '')
+        title = ((diary/'td').to_a)[2].text.gsub(/ \([0-9].?\)/, '')
+        message = "#{nick}さんが「#{title}」を投稿しました！ (#{uri})"
+
         @channels.each do |channel|
           notice(channel, message) if @diaries.size > 20
         end
