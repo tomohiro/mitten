@@ -33,7 +33,10 @@ module Mint
       threads.push(
         Thread.fork do
           while line = @socket.gets
-            befavior(line)
+            message = Message.parse(line)
+            if message.command.upcase == 'PRIVMSG'
+              behavior(message)
+            end
           end
         end
       )
