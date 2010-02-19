@@ -22,6 +22,7 @@ class MixiVoice < Mint::Plugin
 
     @email    = @config['email']
     @password = @config['password']
+    @nickname = @config['nickname']
 
     @agent = Mechanize.new
     if ENV['http_proxy']
@@ -34,6 +35,7 @@ class MixiVoice < Mint::Plugin
 
   def before_hook
     login
+    @identity = get_identity
   end
 
   def login
@@ -45,17 +47,66 @@ class MixiVoice < Mint::Plugin
     end
   end
 
+  def behavior(message)
+    if message.prefix =~ Regexp.new(@nickname)
+      case message[1]
+      when /^re ([0-9]+) (.+)/
+        reply(message.params.first, $1, $2)
+      when /^rm ([0-9]+)/
+        delete($1)
+      when /^add (.+)/
+        add($1)
+      end
+      notify
+    end
+  end
+
   def notify
     voices = crawl_recent_voice
     voices.sort.each do |key, voice|
       if @caches.empty? or !@caches.has_key? key
         @channels.each do |channel|
-          notice(channel, "mixi voice: [#{voice[:nickname]}]#{voice[:reply]} #{voice[:comment]}")
+          notice(channel, "mixi voice: [#{voice[:nickname]}]#{voice[:reply]} #{voice[:comment]} (#{key})")
           sleep 5
         end
       end
     end
     @caches = voices
+  end
+
+  def get_identity
+    recent_page = @agent.get RECENT_VOICE_URI
+    identity = (Nokogiri::HTML(recent_page.body)/'input#post_key').first['value']
+  end
+
+  def reply(channel, key, voice)
+    if @caches.has_key? key
+      member_id = @caches[key][:member_id]
+      post_time = @caches[key][:post_time]
+
+      @agent.get RECENT_VOICE_URI do |post_page|
+        post_page.form_with(:action => '/add_echo.pl') do |form|
+          form.body = voice
+          form.parent_member_id = member_id
+          form.parent_post_time = post_time
+        end.submit
+      end
+    else
+      notice(channel, '指定された返信先が見つかりません')
+    end
+  end
+
+  def delete(post_time)
+    @agent.post "http://mixi.jp/delete_echo.pl?post_time=#{post_time}&post_key=#{@identity}&redirect=recent_echo"
+    @caches = crawl_recent_voice
+  end
+
+  def add(voice)
+    @agent.get RECENT_VOICE_URI do |post_page|
+      post_page.form_with(:action => 'add_echo.pl') do |form|
+        form.body = voice
+      end.submit
+    end
   end
 
   def crawl_recent_voice
