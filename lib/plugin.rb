@@ -24,15 +24,30 @@ module Mint
       post(PRIVMSG, *params)
     end
 
+    def before_hook
+    end
+
     def run
-      before_hook
+      threads = []
 
-      loop do
-        main
-        sleep @sleep
-      end
+      threads.push(
+        Thread.fork do
+          while line = @socket.gets
+            befavior(line)
+          end
+        end
+      )
 
-      after_hook
+      threads.push(
+        Thread.fork do
+          loop do
+            notify
+            sleep @sleep
+          end
+        end
+      )
+
+      threads.each { |t| t.join }
     end
   end
 end
