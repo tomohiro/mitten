@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
      "lib/mint.rb",
      "lib/plugin.rb",
      "lib/utils.rb",
+     "mint.gemspec",
      "plugins/mixi_voice.rb",
      "plugins/openpne_new_diary_check.rb",
      "plugins/time_call.rb",
@@ -44,8 +45,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{IRC Bot Framework}
   s.test_files = [
-    "spec/mint_spec.rb",
-     "spec/spec_helper.rb"
+    "spec/spec_helper.rb",
+     "spec/mint_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
