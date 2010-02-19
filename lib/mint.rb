@@ -74,6 +74,7 @@ module Mint
       threads = []
       @plugins = load_plugins(@server['plugin_dir'], @config.plugins)
       @plugins.each do |plugin|
+        plugin.before_hook
         threads.push(Thread.fork(plugin) { |p| p.run })
       end
 
