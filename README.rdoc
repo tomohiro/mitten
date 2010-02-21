@@ -9,50 +9,71 @@ Mitten is A Ruby IRC Bot Pluggable Framework.
 
 === RubyGems
 
-1. rake
+1. gemcutter
+
+   $ sudo gem install gemcutter
+
+2. rake
 
     $ sudo gem install rake
 
-2. rspec
+3. rspec
 
     $ sudo gem install rspec
 
-3. net-irc
+4. net-irc
 
     $ sudo gem install net-irc
 
-4. daemons
+5. daemons
 
     $ sudo gem install daemons
+
+
+== Installation
+
+1. RubyGems
+
+   $ sudo gem install mitten
+
+2. GitHub
+
+   $ git clone http://github.com/Tomohiro/mitten.git
 
 
 == Usage
 
 1. Usage
 
-    ./bin/server -h
-    ./bin/daemon run -- -h
+    $ ./bin/server -h
+
+  or 
+
+    $ ./bin/daemon run -- -h
 
 2. Start
 
-    ./bin/daemon start
+    $ ./bin/daemon start
 
 3. Restart
 
-    ./bin/daemon restart
+    $ ./bin/daemon restart
 
 4. Stop
 
-    ./bin/daemon stop
+    $ ./bin/daemon stop
 
 5. Changed config file
 
-    ./bin/daemon start -- -c lib/environment.yaml
+    $ ./bin/daemon start -- -c lib/environment.yaml
 
 6. Run on the top(not daemonize)
 
-    ./bin/server
-    ./bin/daemon run
+    $ ./bin/server
+
+  or
+
+    $ ./bin/daemon run
 
 
 == Rake tasks
