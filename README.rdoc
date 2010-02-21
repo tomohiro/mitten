@@ -30,29 +30,29 @@ Mitten is A Ruby IRC Bot Pluggable Framework.
 
 1. Usage
 
-    ./script/server -h
-    ./script/daemon run -- -h
+    ./bin/server -h
+    ./bin/daemon run -- -h
 
 2. Start
 
-    ./script/daemon start
+    ./bin/daemon start
 
 3. Restart
 
-    ./script/daemon restart
+    ./bin/daemon restart
 
 4. Stop
 
-    ./script/daemon stop
+    ./bin/daemon stop
 
 5. Changed config file
 
-    ./script/daemon start -- -c lib/environment.yaml
+    ./bin/daemon start -- -c lib/environment.yaml
 
 6. Run on the top(not daemonize)
 
-    ./script/server
-    ./script/daemon run
+    ./bin/server
+    ./bin/daemon run
 
 
 == Rake tasks

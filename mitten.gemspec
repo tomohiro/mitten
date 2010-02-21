@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.date = %q{2010-02-21}
   s.description = %q{Mitten is A Ruby IRC Bot Pluggable Framework}
   s.email = %q{tomohiro.t@gmail.com}
+  s.executables = ["daemon", "server"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
@@ -23,12 +24,15 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "bin/daemon",
+     "bin/server",
      "configs/example_environment.yaml",
      "configs/time_call.yaml",
      "example/sample.rb",
+     "lib/mitten.rb",
      "lib/plugin.rb",
      "lib/utils.rb",
-     "mint.gemspec",
+     "mitten.gemspec",
      "plugins/amazon_search.rb",
      "plugins/bmi.rb",
      "plugins/codepad.rb",
@@ -50,8 +54,7 @@ Gem::Specification.new do |s|
      "plugins/tweet.rb",
      "plugins/typhoon.rb",
      "plugins/uri_shorten.rb",
-     "script/daemon",
-     "script/server",
+     "spec/mitten_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
@@ -61,8 +64,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{IRC Bot Framework}
   s.test_files = [
-    "spec/spec_helper.rb",
-     "spec/mitten_spec.rb"
+    "spec/mitten_spec.rb",
+     "spec/spec_helper.rb"
   ]
 
   if s.respond_to? :specification_version then

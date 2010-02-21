@@ -1,12 +1,12 @@
 ---
 production:
-  host: tiarra.example.com
+  host: chat.freenode.net
   port: 6667
   user: Mitten
   nick: Mitten
-  real: Mitten bot via Tiarra
+  real: Mitten is IRC Bot Framework
   pass:
-  channel: '#Mitten@example'
+  channel: '#Mitten'
   plugin_dir: example # normal => plugins
   charset:
     default: utf-8
@@ -25,4 +25,4 @@ development:
  
 plugins:
   Sample:
-    channel: '#Mitten@example'
+    channel: '#Mitten'
