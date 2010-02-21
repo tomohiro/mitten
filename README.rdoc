@@ -11,7 +11,7 @@ Mitten is A Ruby IRC Bot Pluggable Framework.
 
 1. gemcutter
 
-   $ sudo gem install gemcutter
+    $ sudo gem install gemcutter
 
 2. rake
 
@@ -34,11 +34,11 @@ Mitten is A Ruby IRC Bot Pluggable Framework.
 
 1. RubyGems
 
-   $ sudo gem install mitten
+    $ sudo gem install mitten
 
 2. GitHub
 
-   $ git clone http://github.com/Tomohiro/mitten.git
+    $ git clone http://github.com/Tomohiro/mitten.git
 
 
 == Usage
@@ -47,7 +47,7 @@ Mitten is A Ruby IRC Bot Pluggable Framework.
 
     $ ./bin/server -h
 
-  or 
+or 
 
     $ ./bin/daemon run -- -h
 
@@ -71,7 +71,7 @@ Mitten is A Ruby IRC Bot Pluggable Framework.
 
     $ ./bin/server
 
-  or
+or
 
     $ ./bin/daemon run
 
