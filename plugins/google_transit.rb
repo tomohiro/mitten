@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-class GoogleTransit < Mint::Plugin
+class GoogleTransit < Mitten::Plugin
   def on_privmsg(prefix, channel, message)
     case message
     when /^(.+)から(.+)(へ|まで|に)行.+/

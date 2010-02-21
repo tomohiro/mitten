@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'net/irc'
 
-module Mint
+module Mitten
   DEFAULT_SLEEP = 360
 
   class Plugin < Net::IRC::Client

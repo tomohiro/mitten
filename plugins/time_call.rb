@@ -1,7 +1,7 @@
 require 'ostruct'
 require 'yaml'
 
-class TimeCall < Mint::Plugin
+class TimeCall < Mitten::Plugin
   def initialize(*args)
     super
 

@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
  
-class Tweet < Mint::Plugin
+class Tweet < Mitten::Plugin
   def initialize(*args)
     super
 

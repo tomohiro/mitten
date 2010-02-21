@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-class ScreenTimeSearch < Mint::Plugin
+class ScreenTimeSearch < Mitten::Plugin
   def initialize(*args)
     super
 

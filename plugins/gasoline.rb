@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-class Gasoline < Mint::Plugin
+class Gasoline < Mitten::Plugin
   def initialize(*args)
     super
 

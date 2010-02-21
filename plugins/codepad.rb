@@ -1,7 +1,7 @@
 require 'mechanize'
 require 'nokogiri'
 
-class CodePad < Mint::Plugin
+class CodePad < Mitten::Plugin
   def initialize(*args)
     super
 

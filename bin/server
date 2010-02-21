@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+MITTEN_ROOT = File.expand_path('..', File.dirname(__FILE__))
+Dir.chdir(MITTEN_ROOT)
+$: <<  MITTEN_ROOT
+
+require 'lib/mitten.rb'
+
+puts 'Booting Mitten Server...'
+Mitten::Core.boot

@@ -4,13 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{mint}
-  s.version = "0.2.0"
+  s.name = %q{mitten}
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tomohiro, TAIRA"]
-  s.date = %q{2010-02-19}
-  s.description = %q{Mint is A Ruby IRC Bot Pluggable Framework}
+  s.date = %q{2010-02-21}
+  s.description = %q{Mitten is A Ruby IRC Bot Pluggable Framework}
   s.email = %q{tomohiro.t@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
      "configs/example_environment.yaml",
      "configs/time_call.yaml",
      "example/sample.rb",
-     "lib/mint.rb",
      "lib/plugin.rb",
      "lib/utils.rb",
      "mint.gemspec",
@@ -53,18 +52,17 @@ Gem::Specification.new do |s|
      "plugins/uri_shorten.rb",
      "script/daemon",
      "script/server",
-     "spec/mint_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/Tomohiro/mint}
+  s.homepage = %q{http://github.com/Tomohiro/mitten}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{IRC Bot Framework}
   s.test_files = [
     "spec/spec_helper.rb",
-     "spec/mint_spec.rb"
+     "spec/mitten_spec.rb"
   ]
 
   if s.respond_to? :specification_version then

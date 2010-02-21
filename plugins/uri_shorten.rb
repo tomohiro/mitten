@@ -1,6 +1,6 @@
 require 'nokogiri'
 
-class URIShorten < Mint::Plugin
+class URIShorten < Mitten::Plugin
   def initialize(*args)
     super
 

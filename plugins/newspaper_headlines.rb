@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'rss'
 
-class NewspaperHeadlines < Mint::Plugin
+class NewspaperHeadlines < Mitten::Plugin
   def initialize(*args)
     super
 

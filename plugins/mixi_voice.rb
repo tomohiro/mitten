@@ -8,12 +8,12 @@ require 'nokogiri'
 
   MixiVoice:
     sleep: 60
-    channel: '#Mint@freenode'
+    channel: '#Mitten@freenode'
     email: 'email'
     password: 'password'
 
 =end
-class MixiVoice < Mint::Plugin
+class MixiVoice < Mitten::Plugin
   MIXI_LOGIN_URI   = 'http://mixi.jp'
   RECENT_VOICE_URI = MIXI_LOGIN_URI + '/recent_echo.pl'
 

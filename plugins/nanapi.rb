@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-class Nanapi < Mint::Plugin
+class Nanapi < Mitten::Plugin
   def initialize(*args)
     super
     @suffix = @config['suffix'] || 'テクニック教えて'

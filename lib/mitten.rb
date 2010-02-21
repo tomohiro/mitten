@@ -13,7 +13,7 @@ require 'net/irc'
 require 'lib/utils'
 require 'lib/plugin'
 
-module Mint
+module Mitten
   DEFAULT_CONFIG_FILE_PATH = 'configs/environment.yaml'
 
   class Core < Net::IRC::Client
@@ -63,12 +63,9 @@ module Mint
         post(JOIN, @opts.channel) if @opts.channel
 
         run_plugins
-      rescue IOError => e
-        post(NOTICE, @opts.channel, e.to_s) if @opts.channel
-        @log.error 'IOError => ' + e.to_s
       rescue Exception => e
-        post(NOTICE, @opts.channel, e.to_s) if @opts.channel
-        @log.error 'Exception => ' + e.to_s
+        post(NOTICE, @opts.channel, "#{e.class} #{e.to_s}") if @opts.channel
+        @log.error "#{e.class} #{e.to_s}"
       ensure
         finish
       end

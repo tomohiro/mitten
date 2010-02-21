@@ -1,4 +1,4 @@
-class Sample < Mint::Plugin
+class Sample < Mitten::Plugin
   def initialize(*args)
     super
   end

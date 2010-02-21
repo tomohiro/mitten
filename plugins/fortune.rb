@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-class Fortune < Mint::Plugin
+class Fortune < Mitten::Plugin
   def initialize(*args)
     super
 

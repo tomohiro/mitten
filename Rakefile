@@ -4,11 +4,11 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = 'mint'
+    gem.name = 'mitten'
     gem.summary = 'IRC Bot Framework'
-    gem.description = 'Mint is A Ruby IRC Bot Pluggable Framework'
+    gem.description = 'Mitten is A Ruby IRC Bot Pluggable Framework'
     gem.email = 'tomohiro.t@gmail.com'
-    gem.homepage = 'http://github.com/Tomohiro/mint'
+    gem.homepage = 'http://github.com/Tomohiro/mitten'
     gem.authors = ['Tomohiro, TAIRA']
     gem.add_development_dependency 'rspec', '>= 1.2.9'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
@@ -39,7 +39,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "mint #{version}"
+  rdoc.title = "mitten #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
   rdoc.options = ['-c', 'utf-8', '-N']

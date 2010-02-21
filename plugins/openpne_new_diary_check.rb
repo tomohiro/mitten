@@ -7,13 +7,13 @@ require 'nokogiri'
 
   OpenPNENewDiaryCheck:
     sleep: 60
-    channel: '#Mint@freenode'
+    channel: '#Mitten@freenode'
     uri : 'http://openpne.example.com'
     username: 'username'
     password: 'password'
 
 =end
-class OpenPNENewDiaryCheck < Mint::Plugin
+class OpenPNENewDiaryCheck < Mitten::Plugin
   def initialize(*args)
     super
 

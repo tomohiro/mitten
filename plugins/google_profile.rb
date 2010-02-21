@@ -1,6 +1,6 @@
 require 'nokogiri'
 
-class GoogleProfile < Mint::Plugin
+class GoogleProfile < Mitten::Plugin
   def initialize(*args)
     super
 

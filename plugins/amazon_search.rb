@@ -1,6 +1,6 @@
 require 'amazon/aws/search'
 
-ENV['AMAZONRCDIR']  = '/usr/local/share/mint'
+ENV['AMAZONRCDIR']  = '/usr/local/share/mitten'
 ENV['AMAZONRCFILE'] = 'amazonrc'
 
 #
@@ -15,7 +15,7 @@ ENV['AMAZONRCFILE'] = 'amazonrc'
 #  cache_dir     = {Cache Directory}
 #
 
-class AmazonSearch < Mint::Plugin
+class AmazonSearch < Mitten::Plugin
   def initialize(*args)
     super
 
@@ -33,12 +33,12 @@ class AmazonSearch < Mint::Plugin
   private
 
   def search(keyword)
+    datas = []
     begin
       request  = Amazon::AWS::Search::Request.new
       query    = Amazon::AWS::ItemSearch.new(:All, { :Keywords => keyword })
       response = Amazon::AWS::ResponseGroup.new(:Small, :OfferSummary)
 
-      datas = []
       results = request.search(query, response).item_search_response.items.item
 
       results[0...@limit].each do |item|
@@ -55,7 +55,7 @@ class AmazonSearch < Mint::Plugin
         datas << "Amazon : #{title}  #{price} だよ♪ (#{URI.short(uri)})"
       end
     rescue Exception
-      '／(^o^)＼ 見つからにゃいっ'
+      datas << '／(^o^)＼ 見つからにゃいっ'
     end
     datas
   end

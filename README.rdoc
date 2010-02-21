@@ -1,8 +1,8 @@
-= Mint
+= Mitten
 
 == Description
 
-Mint is A Ruby IRC Bot Pluggable Framework.
+Mitten is A Ruby IRC Bot Pluggable Framework.
 
 
 == Require

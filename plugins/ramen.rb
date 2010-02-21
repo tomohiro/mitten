@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-class Ramen < Mint::Plugin
+class Ramen < Mitten::Plugin
   def initialize(*args)
     super
 

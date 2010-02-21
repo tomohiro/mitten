@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-class Rate < Mint::Plugin
+class Rate < Mitten::Plugin
   def initialize(*args)
     super
     @suffix = @config['suffix'] || '度判定して'

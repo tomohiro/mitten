@@ -1,6 +1,6 @@
 require 'nokogiri'
 
-class GoogleWeather < Mint::Plugin
+class GoogleWeather < Mitten::Plugin
   def initialize(*args)
     super
 

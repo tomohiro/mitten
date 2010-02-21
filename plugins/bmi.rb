@@ -1,4 +1,4 @@
-class BMI < Mint::Plugin
+class BMI < Mitten::Plugin
   def initialize(*args)
     super
 

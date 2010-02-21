@@ -7,16 +7,16 @@ require 'nokogiri'
 
   Gmail:
     sleep: 60
-    channel: '#Mint@freenode'
+    channel: '#Mitten@freenode'
     account: 'account'
     password: 'password'
 
 =end
-class Gmail < Mint::Plugin
+class Gmail < Mitten::Plugin
   def initialize(*args)
     super
 
-    @account = @config['account']
+    @account  = @config['account']
     @password = @config['password']
 
     proxy = ENV['https_proxy'] || ENV['http_proxy']

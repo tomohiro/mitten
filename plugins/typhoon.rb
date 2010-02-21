@@ -1,7 +1,7 @@
 require "open-uri"
 require 'nokogiri'
 
-class Typhoon < Mint::Plugin
+class Typhoon < Mitten::Plugin
   def initialize(*args)
     super
 
