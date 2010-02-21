@@ -64,8 +64,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{IRC Bot Framework}
   s.test_files = [
-    "spec/mitten_spec.rb",
-     "spec/spec_helper.rb"
+    "spec/spec_helper.rb",
+     "spec/mitten_spec.rb"
   ]
 
   if s.respond_to? :specification_version then

@@ -46,9 +46,6 @@ Mitten is A Ruby IRC Bot Pluggable Framework.
 1. Usage
 
     $ ./bin/server -h
-
-or 
-
     $ ./bin/daemon run -- -h
 
 2. Start
@@ -70,9 +67,6 @@ or
 6. Run on the top(not daemonize)
 
     $ ./bin/server
-
-or
-
     $ ./bin/daemon run
 
 
