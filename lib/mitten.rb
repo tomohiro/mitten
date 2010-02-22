@@ -90,7 +90,7 @@ module Mitten
 
       @plugins.each do |plugin|
         plugin.before_hook
-        threads.push(Thread.fork(plugin) { |p| p.notify })
+        threads.push(Thread.fork { plugin.notify })
       end
 
       threads.each { |t| t.join }
