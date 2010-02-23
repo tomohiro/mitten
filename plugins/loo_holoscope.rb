@@ -43,7 +43,7 @@ class LooHoloscope < Mitten::Plugin
     begin
       doc = Nokogiri::HTML(open(uri).read)
 
-      loo = 'ルー占い: ' + (doc/'div.box-inner/p').first.text.gsub("\n", '')
+      loo = (doc/'div.box-inner/p').first.text.gsub("\n", '') + ' ってルーさんが言ってたよ♪'
     rescue Exception => e
       e.to_s
     end
