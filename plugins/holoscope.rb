@@ -3,7 +3,7 @@ require 'nkf'
 require 'open-uri'
 require 'nokogiri'
 
-class SunSignAstrology < Mitten::Plugin
+class Holoscope < Mitten::Plugin
   def initialize(*args)
     super
     @suffix = @config['suffix'] || 'の運勢教えて'
