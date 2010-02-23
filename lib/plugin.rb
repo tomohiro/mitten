@@ -5,10 +5,11 @@ module Mitten
   DEFAULT_SLEEP = 360
 
   class Plugin < Net::IRC::Client
-    def initialize(config, socket)
+    def initialize(config, server, socket)
       @config   = config || {}
+      @server   = server
       @socket   = socket
-      @channels = @config['channels'] || @config['channel']
+      @channels = @config['channels'] || @config['channel'] || @server.channel
       @sleep    = @config['sleep'] || DEFAULT_SLEEP
     end
 

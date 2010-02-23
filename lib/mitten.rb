@@ -123,7 +123,7 @@ module Mitten
     def instantiation(class_tables)
       plugins = []
       class_tables.each do |name, plugin|
-        plugins << plugin[:class].new(plugin[:configs], @socket)
+        plugins << plugin[:class].new(plugin[:configs], @opts, @socket)
         puts "Plugin: #{name} is loaded"
       end
 
