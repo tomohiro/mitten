@@ -1,3 +1,5 @@
+require 'ostruct'
+require 'yaml'
 require 'open-uri'
 require 'nokogiri'
  
@@ -5,9 +7,12 @@ class TwitterBot < Mitten::Plugin
   def initialize(*args)
     super
 
-    @bot_list = {
-      '今日は何の日' => 'nannohi'
-    }
+    @config_file = @config['config']
+    @bot_list = load_config
+  end
+
+  def load_config
+    OpenStruct.new(File.open(@config_file) { |f| YAML.load(f) }).bot_list
   end
 
   def on_privmsg(prefix, channel, message)
