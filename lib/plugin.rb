@@ -4,7 +4,10 @@ require 'net/irc'
 module Mitten
   DEFAULT_SLEEP = 360
 
-  class Plugin < Net::IRC::Client
+  class Plugin
+    include Net::IRC
+    include Constants
+
     def initialize(config, server, socket)
       @config   = config || {}
       @server   = server
@@ -13,25 +16,34 @@ module Mitten
       @sleep    = @config['sleep'] || DEFAULT_SLEEP
     end
 
-    def post(command, *params)
-      @socket <<  Message.new(nil, command, params.map { |s| s.gsub(/\r|\n/, " ") })
+    def post(command, *args)
+      @socket <<  Message.new(nil, command, args.map { |s| s.gsub(/\r|\n/, " ") })
     end
 
-    def notice(*params)
-      post(NOTICE, *params)
+    def notice(*args)
+      post(NOTICE, *args)
     end
 
-    def message(*params)
-      post(PRIVMSG, *params)
+    def message(*args)
+      post(PRIVMSG, *args)
     end
 
-    def on_privmsg(prefix, channel, message)
+    def response(*args)
+      begin
+        on_privmsg(*args)
+      rescue Exception => e
+        post(NOTICE, @server.channel, "#{e.class} #{e.to_s}") if @server.channel
+      end
     end
 
     def notify
-      loop do
-        main
-        sleep @sleep
+      begin
+        loop do
+          main
+          sleep @sleep
+        end
+      rescue Exception => e
+        post(NOTICE, @server.channel, "#{e.class} #{e.to_s}") if @server.channel
       end
     end
   end
