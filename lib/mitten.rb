@@ -73,22 +73,22 @@ module Mitten
 
     def run_plugins
       threads = []
-      @plugins = load_plugins(@server['plugin_dir'], @config.plugins)
+      load_plugins(@server['plugin_dir'], @config.plugins)
 
       threads.push(
         Thread.fork do
           while line = @socket.gets
             message = Message.parse(line)
             if message.command.upcase == 'PRIVMSG'
-              @plugins.each do |plugin|
-                plugin.on_privmsg(message.prefix, message[0], message[1])
+              @response_plugins.each do |plugin|
+                plugin.response(message.prefix, message[0], message[1])
               end
             end
           end
         end
       )
 
-      @plugins.each do |plugin|
+      @notify_plugins.each do |plugin|
         plugin.before_hook
         threads.push(Thread.fork { plugin.notify })
       end
@@ -118,6 +118,7 @@ module Mitten
       end
 
       plugins = instantiation(class_tables)
+      instance_categorize(plugins)
     end
 
     def instantiation(class_tables)
@@ -128,6 +129,16 @@ module Mitten
       end
 
       plugins
+    end
+
+    def instance_categorize(plugins)
+      @response_plugins = []
+      @notify_plugins   = []
+
+      plugins.each do |plugin|
+        @response_plugins << plugin if plugin.respond_to? 'on_privmsg'
+        @notify_plugins   << plugin if plugin.respond_to? 'main'
+      end
     end
   end
 end
