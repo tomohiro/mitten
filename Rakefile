@@ -10,7 +10,11 @@ begin
     gem.email = 'tomohiro.t@gmail.com'
     gem.homepage = 'http://github.com/Tomohiro/mitten'
     gem.authors = ['Tomohiro, TAIRA']
+    gem.add_dependency 'net-irc', '>= 0.0.9'
+    gem.add_dependency 'daemons', '>= 1.0.10'
+    gem.add_dependency 'json_pure', '>= 1.2.0'
     gem.add_development_dependency 'rspec', '>= 1.2.9'
+    gem.add_development_dependency 'rake', '>= 0.8.7'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

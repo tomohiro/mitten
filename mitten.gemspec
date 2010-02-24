@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{mitten}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tomohiro, TAIRA"]
-  s.date = %q{2010-02-21}
+  s.date = %q{2010-02-24}
   s.description = %q{Mitten is A Ruby IRC Bot Pluggable Framework}
   s.email = %q{tomohiro.t@gmail.com}
   s.executables = ["daemon", "server"]
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
      "bin/server",
      "configs/example_environment.yaml",
      "configs/time_call.yaml",
+     "configs/twitter_bot.yaml",
      "example/sample.rb",
      "lib/mitten.rb",
      "lib/plugin.rb",
@@ -42,6 +43,8 @@ Gem::Specification.new do |s|
      "plugins/google_profile.rb",
      "plugins/google_transit.rb",
      "plugins/google_weather.rb",
+     "plugins/holoscope.rb",
+     "plugins/loo_holoscope.rb",
      "plugins/mixi_voice.rb",
      "plugins/nanapi.rb",
      "plugins/newspaper_headlines.rb",
@@ -49,9 +52,9 @@ Gem::Specification.new do |s|
      "plugins/ramen.rb",
      "plugins/rate.rb",
      "plugins/screen_time_search.rb",
-     "plugins/sun_sign_astrology.rb",
      "plugins/time_call.rb",
      "plugins/tweet.rb",
+     "plugins/twitter_bot.rb",
      "plugins/typhoon.rb",
      "plugins/uri_shorten.rb",
      "spec/mitten_spec.rb",
@@ -73,12 +76,24 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<net-irc>, [">= 0.0.9"])
+      s.add_runtime_dependency(%q<daemons>, [">= 1.0.10"])
+      s.add_runtime_dependency(%q<json_pure>, [">= 1.2.0"])
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_development_dependency(%q<rake>, [">= 0.8.7"])
     else
+      s.add_dependency(%q<net-irc>, [">= 0.0.9"])
+      s.add_dependency(%q<daemons>, [">= 1.0.10"])
+      s.add_dependency(%q<json_pure>, [">= 1.2.0"])
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_dependency(%q<rake>, [">= 0.8.7"])
     end
   else
+    s.add_dependency(%q<net-irc>, [">= 0.0.9"])
+    s.add_dependency(%q<daemons>, [">= 1.0.10"])
+    s.add_dependency(%q<json_pure>, [">= 1.2.0"])
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
+    s.add_dependency(%q<rake>, [">= 0.8.7"])
   end
 end
 
