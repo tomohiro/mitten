@@ -5,38 +5,13 @@
 Mitten is A Ruby IRC Bot Pluggable Framework.
 
 
-== Require
-
-=== RubyGems
-
-1. gemcutter
-
-    $ sudo gem install gemcutter
-
-2. rake
-
-    $ sudo gem install rake
-
-3. rspec
-
-    $ sudo gem install rspec
-
-4. net-irc
-
-    $ sudo gem install net-irc
-
-5. daemons
-
-    $ sudo gem install daemons
-
-
 == Installation
 
-1. RubyGems
+- RubyGems
 
     $ sudo gem install mitten
 
-2. GitHub
+- GitHub
 
     $ git clone http://github.com/Tomohiro/mitten.git
 
@@ -103,6 +78,4 @@ Copyright (c) 2010 Tomohiro, TAIRA.
 
 == Licence
 
-The MIT License
-
-See LICENSE for details.
+The MIT License. See LICENSE for details.
