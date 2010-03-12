@@ -1,4 +1,5 @@
 require 'net/https'
+require 'sdbm'
 require 'nokogiri'
 
 =begin
@@ -25,7 +26,7 @@ class Gmail < Mitten::Plugin
     else 
       @https = Net::HTTP.new('mail.google.com', 443)
     end
-    @mail_cache = {}
+
   end
 
   def before_hook
@@ -40,20 +41,25 @@ class Gmail < Mitten::Plugin
   end
 
   def main
-    mail_list = Nokogiri::XML(@https.request(@request).body)
-    (mail_list/'entry').each do |entry|
-      id = entry.at('id').content
-      unless @mail_cache.key? id
-        @mail_cache[id] = true
-        title = entry.at('title').text
-        name  = entry.at('name').text
-        link  = entry.at('link')['href']
+    begin
+      db = SDBM.open("/tmp/#{@account}.db", 0666)
+      mail_list = Nokogiri::XML(@https.request(@request).body)
+      (mail_list/'entry').each do |entry|
+        id = entry.at('id').content
+        unless db.include? id
+          db[id] = '1'
+          title = entry.at('title').text
+          name  = entry.at('name').text
+          link  = entry.at('link')['href']
 
-        @channels.each do |channel|
-          notice(channel, "Gmail: (#{name}) #{title} #{URI.short(link)}")
-          sleep 5
+          @channels.each do |channel|
+            notice(channel, "Gmail: (#{name}) #{title} #{URI.short(link)}")
+            sleep 5
+          end
         end
       end
+    ensure
+      db.close
     end
   end
 end
