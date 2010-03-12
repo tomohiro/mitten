@@ -16,7 +16,7 @@ require 'lib/plugin'
 module Mitten
   DEFAULT_CONFIG_FILE_PATH = 'configs/environment.yaml'
 
-  class Core < Net::IRC::Client
+  class Bot < Net::IRC::Client
     def self.boot
       new.boot
     end

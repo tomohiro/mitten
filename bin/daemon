@@ -5,4 +5,4 @@ require 'daemons'
 
 root = File.expand_path(File.dirname(__FILE__))
 
-Daemons.run("#{root}/server", {:app_name => 'mittend'})
+Daemons.run("#{root}/client", {:app_name => 'mittend'})

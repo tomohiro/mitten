@@ -8,7 +8,7 @@ begin
     gem.summary = 'IRC Bot Framework'
     gem.description = 'Mitten is A Ruby IRC Bot Pluggable Framework'
     gem.email = 'tomohiro.t@gmail.com'
-    gem.homepage = 'http://github.com/Tomohiro/mitten'
+    gem.homepage = 'http://rubygems.org/gems/mitten'
     gem.authors = ['Tomohiro, TAIRA']
     gem.add_dependency 'net-irc', '>= 0.0.9'
     gem.add_dependency 'daemons', '>= 1.0.10'
