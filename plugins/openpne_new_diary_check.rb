@@ -1,3 +1,4 @@
+require 'sdbm'
 require 'mechanize'
 require 'nokogiri'
 
@@ -20,7 +21,6 @@ class OpenPNENewDiaryCheck < Mitten::Plugin
     @uri      = @config['uri']
     @username = @config['username']
     @password = @config['password']
-    @diaries = {}
   end
 
   def before_hook
@@ -38,23 +38,29 @@ class OpenPNENewDiaryCheck < Mitten::Plugin
   end
 
   def main
-    diary_page = @agent.get "#{@uri}/?m=pc&a=page_h_diary_list_all"
-    diaries = Nokogiri::HTML(diary_page.body)/'div.item'
+    begin
+      db = SDBM.open("/tmp/openpnenewdiarycheck_#{@username}.db")
+      diary_page = @agent.get "#{@uri}/?m=pc&a=page_h_diary_list_all"
+      diaries = Nokogiri::HTML(diary_page.body)/'div.item'
 
-    diaries[1...diaries.size].each do |diary|
-      uri = "#{@uri}/#{(diary/'td.photo/a').first.attributes['href']}"
-      redo if uri == nil or uri == ''
+      diaries[1...diaries.size].each do |diary|
+        uri = "#{@uri}/#{(diary/'td.photo/a').first.attributes['href']}"
+        redo if uri == nil or uri == ''
 
-      unless @diaries.has_key? uri
-        @diaries[uri] = true
-        nick  = ((diary/'td').to_a)[1].text.gsub(/ \(.*\)$/, '')
-        title = ((diary/'td').to_a)[2].text.gsub(/ \([0-9].?\)/, '')
-        message = "#{nick}さんが「#{title}」を投稿しました！ (#{uri})"
+        unless db.include? uri
+          db[uri] = '1'
+          nick  = ((diary/'td').to_a)[1].text.gsub(/ \(.*\)$/, '')
+          title = ((diary/'td').to_a)[2].text.gsub(/ \([0-9].?\)/, '')
+          message = "#{nick}さんが「#{title}」を投稿しました！ (#{uri})"
 
-        @channels.each do |channel|
-          notice(channel, message) if @diaries.size > 20
+          @channels.each do |channel|
+            notice(channel, message)
+            sleep 5
+          end
         end
       end
+    ensure
+      db.close
     end
   end
 end
