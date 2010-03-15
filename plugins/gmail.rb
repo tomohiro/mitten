@@ -26,7 +26,6 @@ class Gmail < Mitten::Plugin
     else 
       @https = Net::HTTP.new('mail.google.com', 443)
     end
-
   end
 
   def before_hook
@@ -42,7 +41,7 @@ class Gmail < Mitten::Plugin
 
   def main
     begin
-      db = SDBM.open("/tmp/#{@account}.db", 0666)
+      db = SDBM.open("/tmp/gmail_#{@account}.db")
       mail_list = Nokogiri::XML(@https.request(@request).body)
       (mail_list/'entry').each do |entry|
         id = entry.at('id').content
