@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{mitten}
-  s.version = "0.0.4"
+  s.version = "0.0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tomohiro, TAIRA"]
-  s.date = %q{2010-02-25}
+  s.date = %q{2010-03-16}
   s.description = %q{Mitten is A Ruby IRC Bot Pluggable Framework}
   s.email = %q{tomohiro.t@gmail.com}
-  s.executables = ["daemon", "server"]
+  s.executables = ["daemon", "client"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
@@ -24,8 +24,8 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "bin/client",
      "bin/daemon",
-     "bin/server",
      "configs/example_environment.yaml",
      "configs/time_call.yaml",
      "configs/twitter_bot.yaml",
@@ -61,7 +61,7 @@ Gem::Specification.new do |s|
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/Tomohiro/mitten}
+  s.homepage = %q{http://rubygems.org/gems/mitten}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
