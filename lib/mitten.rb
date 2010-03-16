@@ -43,7 +43,7 @@ module Mitten
         o.parse!
       end
 
-      @config = OpenStruct.new(File.open(config_file) { |f| YAML.load(f) })
+      @config = OpenStruct.new(YAML.load_file config_file)
       @server = @config.method(@mode).call
     end
 
