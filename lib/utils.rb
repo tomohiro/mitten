@@ -9,7 +9,7 @@ module URI
   def self.short(uri)
     return uri if SHORT_URI_API_LOGIN == nil
     begin
-      query  = "http://api.j.mp/shorten?version=2.0.1&longUrl=#{uri.gsub('&', '%26')}&login=#{SHORT_URI_API_LOGIN}&apiKey=#{SHORT_URI_API_TOKEN}"
+      query  = "http://api.bit.ly/v3/shorten?version=2.0.1&longUrl=#{uri.gsub('&', '%26')}&login=#{SHORT_URI_API_LOGIN}&apiKey=#{SHORT_URI_API_TOKEN}"
       result = JSON.parse(open(query).read)
 
       result.first[1].first[1]['shortUrl']

@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-$KCODE = 'u'
-
 require 'ostruct'
 require 'yaml'
 require 'optparse'

@@ -20,29 +20,29 @@ Mitten is A Ruby IRC Bot Pluggable Framework.
 
 1. Usage
 
-    $ ./bin/client -h
-    $ ./bin/daemon run -- -h
+    $ ./bin/mitten -h
+    $ ./bin/mittend run -- -h
 
 2. Start
 
-    $ ./bin/daemon start
+    $ ./bin/mittend start
 
 3. Restart
 
-    $ ./bin/daemon restart
+    $ ./bin/mittend restart
 
 4. Stop
 
-    $ ./bin/daemon stop
+    $ ./bin/mittend stop
 
 5. Changed config file
 
-    $ ./bin/daemon start -- -c lib/environment.yaml
+    $ ./bin/mittend start -- -c lib/environment.yaml
 
 6. Run on the top(not daemonize)
 
-    $ ./bin/client
-    $ ./bin/daemon run
+    $ ./bin/mitten
+    $ ./bin/mittend run
 
 
 == Rake tasks

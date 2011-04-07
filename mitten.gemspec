@@ -9,10 +9,10 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tomohiro, TAIRA"]
-  s.date = %q{2010-03-16}
+  s.date = %q{2010-04-26}
   s.description = %q{Mitten is A Ruby IRC Bot Pluggable Framework}
   s.email = %q{tomohiro.t@gmail.com}
-  s.executables = ["daemon", "client"]
+  s.executables = ["mittend", "mitten"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
@@ -24,8 +24,8 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "bin/client",
-     "bin/daemon",
+     "bin/mitten",
+     "bin/mittend",
      "configs/example_environment.yaml",
      "configs/time_call.yaml",
      "configs/twitter_bot.yaml",
