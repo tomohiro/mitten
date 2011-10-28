@@ -1,4 +1,7 @@
-class Sample < Mitten::Plugin
+# encoding: utf-8
+
+class Echo < Mitten::Plugin
+
   def initialize(*args)
     super
   end
@@ -8,6 +11,9 @@ class Sample < Mitten::Plugin
   end
 
   def main
-    @channels.each { |channel| notice(channel, Time.now.to_s) }
+    @channels.each do |channel|
+      notice(channel, Time.now.to_s)
+    end
   end
+
 end

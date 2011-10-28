@@ -10,19 +10,20 @@ production:
   plugin_dir: example # normal => plugins
   charset:
     default: utf-8
- 
+
 development:
-  host: chat.freenode.net
+  host: my.irc.server.example.com
   port: 6667
   user: Mitten
   nick: Mitten
   real: Mitten is IRC Bot Framework
   pass:
   channel: '#Mitten'
-  plugin_dir: example # normal => plugins
+  plugin_dir: plugins
   charset:
     default: utf-8
- 
+
 plugins:
-  Sample:
+  Echo:
     channel: '#Mitten'
+    sleep: 10

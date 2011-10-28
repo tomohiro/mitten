@@ -1,5 +1,4 @@
-require 'rubygems'
-require 'net/irc'
+# encoding:utf-8
 
 module Mitten
   DEFAULT_SLEEP = 360
@@ -12,8 +11,12 @@ module Mitten
       @config   = config || {}
       @server   = server
       @socket   = socket
-      @channels = @config['channels'] || @config['channel'] || @server.channel
+      @channels = @config['channels'] || (@config['channel'] || [@server.channel])
       @sleep    = @config['sleep'] || DEFAULT_SLEEP
+    end
+
+    def before_hook
+      # Do something
     end
 
     def post(command, *args)
@@ -39,12 +42,14 @@ module Mitten
     def notify
       begin
         loop do
-          main
+          p @sleep
           sleep @sleep
+          main
         end
       rescue Exception => e
         post(NOTICE, @server.channel, "#{e.class} #{e.to_s}") if @server.channel
       end
     end
+
   end
 end

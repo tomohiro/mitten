@@ -1,50 +1,24 @@
-require 'rubygems'
-require 'rake'
+require 'rake/clean'
+
+#CLEAN.include('config/test.yml', 'tmp', 'log', '/tmp/rig_issues.*')
+
+namespace :mitten do
+  namespace :development do
+    desc 'Setup development environments'
+    task  :setup do
+      sh 'rvm use 1.9.3'
+      sh 'rvm gemset create mitten'
+      sh 'rvm gemset use mitten'
+      sh 'gem install bundler'
+      sh 'gem list'
+      sh 'bundle install --system'
+      sh 'bundle show'
+    end
+  end
+end
 
 begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = 'mitten'
-    gem.summary = 'IRC Bot Framework'
-    gem.description = 'Mitten is A Ruby IRC Bot Pluggable Framework'
-    gem.email = 'tomohiro.t@gmail.com'
-    gem.homepage = 'http://rubygems.org/gems/mitten'
-    gem.authors = ['Tomohiro, TAIRA']
-    gem.add_dependency 'net-irc', '>= 0.0.9'
-    gem.add_dependency 'daemons', '>= 1.0.10'
-    gem.add_dependency 'json_pure', '>= 1.2.0'
-    gem.add_development_dependency 'rspec', '>= 1.2.9'
-    gem.add_development_dependency 'rake', '>= 0.8.7'
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-  Jeweler::GemcutterTasks.new
+  require 'bundler/gem_tasks'
 rescue LoadError
-  puts 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
-end
-
-require 'spec/rake/spectask'
-Spec::Rake::SpecTask.new(:spec) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.spec_files = FileList['spec/**/*_spec.rb']
-end
-
-Spec::Rake::SpecTask.new(:rcov) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
-end
-
-task :spec => :check_dependencies
-
-task :default => :spec
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "mitten #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-  rdoc.options = ['-c', 'utf-8', '-N']
+  abort 'NOTE: Run `$ rake mitten:development:setup`'
 end

@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+# encoding:utf-8
 
 require 'ostruct'
 require 'yaml'
@@ -8,8 +8,9 @@ require 'pathname'
 require 'rubygems'
 require 'net/irc'
 
-require 'lib/utils'
-require 'lib/plugin'
+require 'mitten/version'
+require 'mitten/utils'
+require 'mitten/plugin'
 
 module Mitten
   DEFAULT_CONFIG_FILE_PATH = 'configs/environment.yaml'
@@ -100,21 +101,20 @@ module Mitten
       Pathname.glob("#{plugin_dir}/*.rb") do |file|
         plugin = {}
         m = Module.new
-        m.module_eval(file.read, file)
+        m.module_eval(file.read, file.to_s)
         m.constants.each do |name|
-          break unless plugin_configs.has_key? name
+          break unless plugin_configs.has_key? name.to_s
           const = m.const_get(name)
           if const.is_a? Class 
             plugin[name] = {
               :class   => const,
               :file    => file,
-              :configs => plugin_configs[name]
+              :configs => plugin_configs[name.to_s]
             }
           end
         end
         class_tables.update(plugin)
       end
-
       plugins = instantiation(class_tables)
       instance_categorize(plugins)
     end

@@ -1,4 +1,5 @@
-require 'rubygems'
+# encoding:utf-8 
+
 require 'open-uri'
 require 'json'
 
