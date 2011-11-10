@@ -42,8 +42,8 @@ module Mitten
     def notify
       begin
         loop do
-          sleep @sleep
           main
+          sleep @sleep
         end
       rescue Exception => e
         post(NOTICE, @server.channel, "#{e.class} #{e.to_s}") if @server.channel
