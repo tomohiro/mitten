@@ -11,7 +11,7 @@ module Mitten
       @config   = config || {}
       @server   = server
       @socket   = socket
-      @channels = @config['channels'] || (@config['channel'] || [@server.channel])
+      @channels = @config['channels'] || ([@config['channel'] || [@server.channel]])
       @sleep    = @config['sleep'] || DEFAULT_SLEEP
     end
 
