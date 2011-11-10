@@ -42,7 +42,6 @@ module Mitten
     def notify
       begin
         loop do
-          p @sleep
           sleep @sleep
           main
         end
