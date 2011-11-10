@@ -82,6 +82,10 @@ module Mitten
               @response_plugins.each do |plugin|
                 plugin.response(message.prefix, message[0], message[1])
               end
+            else
+              next if on_message(message) === true
+              name = "on_#{(COMMANDS[message.command.upcase] || message.command).downcase}"
+              send(name, message) if respond_to?(name)
             end
           end
         end
